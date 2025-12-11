@@ -65,6 +65,7 @@
             const statusDiv = document.getElementById('status');
             const uploadBtn = document.getElementById('uploadBtn');
             
+            
             if (!fileInput.files[0]) {
                 statusDiv.textContent = 'Please select a file';
                 statusDiv.className = 'error';
@@ -88,7 +89,7 @@
             statusDiv.className = '';
 
             try {
-                
+
                 statusDiv.textContent = `File uploaded successfully: ${file.name}`;
                 statusDiv.className = 'success';
                 fileInput.value = '';
