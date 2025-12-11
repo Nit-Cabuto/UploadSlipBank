@@ -132,22 +132,37 @@
         }
 
         function main() {
-            liff.init({ liffId: "2008674318-sY2GkIQE" });
+            liff.init({ liffId: "2008674318-sY2GkIQE" } , function() {
+                liff.ready.then(() => {
+                    // LIFF is ready
 
-            // login ก่อนถ้ายังไม่ login
-            if (!liff.isLoggedIn()) {
+                    if (liff.isLoggedIn()) {
 
-                liff.login();
-
-                return;
-            }
-
-            liff.sendMessages([
-                    {
-                        type: 'text',
-                        text: 'รอคอนเฟิร์ม ตรวจสอบการชำระเงิน'
-                    }
+                        liff.sendMessages([
+                        {
+                            type: 'text',
+                            text: 'รอคอนเฟิร์ม ตรวจสอบการชำระเงิน'
+                        }
                 ]);
+                    }
+                    else {
+
+                        liff.login();
+                    }
+                }).catch((err) => {
+                    console.error('LIFF initialization failed ', err);
+                });
+            });
+
+            // // login ก่อนถ้ายังไม่ login
+            // if (!liff.isLoggedIn()) {
+
+            //     liff.login();
+
+            //     return;
+            // }
+
+
         }
 
         // function sendAlert() {
