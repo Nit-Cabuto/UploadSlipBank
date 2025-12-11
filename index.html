@@ -96,7 +96,7 @@
                 statusDiv.className = 'success';
                 fileInput.value = '';
 
-                
+                sendAlert();
                 //liff.closeWindow();
                 //liff.init({ liffId: "2008674318-sY2GkIQE-9wXK0e1q" })
                     
@@ -125,6 +125,22 @@
             setTimeout(() => {
                 liff.closeWindow();
             }, 2000);
+        }
+
+        function sendAlert() {
+            liff.sendMessages([
+                {
+                    "type": "text",
+                    "text": "รอคอนเฟิร์มการชำระเงิน"
+                }
+                ])
+                .then(() => {
+                alert("Message sent");
+                liff.closeWindow(); // Optional: close the LIFF window after sending
+                })
+                .catch((error) => {
+                console.error("Error sending message: " + error);
+                });
         }
     </script>
 </body>
