@@ -132,6 +132,8 @@
                 //     }
                 // ]);
                     
+                uploadBtn.disabled = false;
+
                 const response = await fetch('https://developer.easyslip.com/api/v1/verify', {
                     method: 'POST',
                     headers: {
