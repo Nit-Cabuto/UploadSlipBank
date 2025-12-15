@@ -65,9 +65,11 @@
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/versions/2.22.3/sdk.js"></script>
     <script>
 
+        const id = "2008674318-sY2GkIQE";
+
         const mainpage = async () => {
             
-            await liff.init({ liffId: "2008674318-sY2GkIQE" });
+            await liff.init({ liffId: id});
 
             if (!liff.isLoggedIn()) {
                 liff.login();
@@ -137,11 +139,13 @@
                 var value = data.result;
                 console.log(value.result[0]);
 
-                liff.sendMessages([
-                        {
-                            type: 'text',
-                            text: value.result[0]
-                        }]);
+                sendAlert();
+
+                // liff.sendMessages([
+                //         {
+                //             type: 'text',
+                //             text: value.result[0]
+                //         }]);
 
                 // var message = value.result;
                 // console.log(message);
@@ -215,22 +219,22 @@
 
         // }
 
-        // function sendAlert() {
-        //     //liff.init({ liffId: "2008674318-sY2GkIQE-9wXK0e1q" });
-        //     liff.sendMessages([
-        //         {
-        //             "type": "text",
-        //             "text": "รอคอนเฟิร์มการชำระเงิน"
-        //         }
-        //         ])
-        //         .then(() => {
-        //         alert("Message sent");
-        //             liff.closeWindow(); // Optional: close the LIFF window after sending
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error sending message: " + error);
-        //         });
-        // }
+        function sendAlert() {
+            //liff.init({ liffId: "2008674318-sY2GkIQE-9wXK0e1q" });
+            liff.sendMessages([
+                {
+                    "type": "text",
+                    "text": "รอคอนเฟิร์มการชำระเงิน"
+                }
+                ])
+                .then(() => {
+                alert("Message sent");
+                    liff.closeWindow(); // Optional: close the LIFF window after sending
+                })
+                .catch((error) => {
+                    console.error("Error sending message: " + error);
+                });
+        }
 
     </script>
 
