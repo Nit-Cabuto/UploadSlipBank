@@ -123,7 +123,12 @@
 
                 console.log('File ready to be sent:', file.name);
 
-                sendAlert();
+                await liff.sendMessages([
+                    {
+                        type: "text",
+                        text: `File uploaded successfully: ${file.name}`,
+                    }
+                ]);
                     
                 // const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
                 //     method: 'POST',
