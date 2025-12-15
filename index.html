@@ -123,17 +123,17 @@
 
                 console.log('File ready to be sent:', file.name);
 
-                await liff.sendMessages([
-                    {
-                        type: "text",
-                        text: `File uploaded successfully: ${file.name}`,
-                    }
-                ]);
+                // await liff.sendMessages([
+                //     {
+                //         type: "text",
+                //         text: "waiting for approve ...",
+                //     }
+                // ]);
                     
-                // const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
-                //     method: 'POST',
-                //     body: formData
-                // });
+                const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
+                    method: 'POST',
+                    body: formData
+                });
 
                 // console.log(await response);
 
@@ -142,16 +142,16 @@
                 // var status = data.status;
                 // console.log(status);
 
-                // var value = data.result;
-                // console.log(value.result[0]);
+                var value = data.result;
+                console.log(value.result[0]);
 
-                //sendAlert();
+                await liff.sendMessages([
+                    {
+                        type: "text",
+                        text: value.result[0],
+                    }
+                ]);
 
-                // liff.sendMessages([
-                //         {
-                //             type: 'text',
-                //             text: value.result[0]
-                //         }]);
 
                 // var message = value.result;
                 // console.log(message);
