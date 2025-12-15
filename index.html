@@ -119,27 +119,27 @@
                 statusDiv.className = 'success';
                 fileInput.value = '';
         
-                //sendAlert();
+                sendAlert();
 
                 //liff.closeWindow();
                 //liff.init({ liffId: "2008674318-sY2GkIQE-9wXK0e1q" })
                     
-                const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
-                    method: 'POST',
-                    body: formData
-                });
+                // const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
+                //     method: 'POST',
+                //     body: formData
+                // });
 
-                console.log(await response);
+                // console.log(await response);
 
-                var data = await response.json();
+                // var data = await response.json();
                    
                 // var status = data.status;
                 // console.log(status);
 
-                var value = data.result;
-                console.log(value.result[0]);
+                // var value = data.result;
+                // console.log(value.result[0]);
 
-                sendAlert();
+                //sendAlert();
 
                 // liff.sendMessages([
                 //         {
