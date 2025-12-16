@@ -125,13 +125,6 @@
 
                 console.log('File ready to be sent:', file.name);
 
-                // await liff.sendMessages([
-                //     {
-                //         type: "text",
-                //         text: "Hi " + profileName,
-                //     }
-                // ]);
-
                 const response = await fetch('https://developer.easyslip.com/api/v1/verify', {
                     method: 'POST',
                     headers: {
@@ -267,9 +260,10 @@
 
                     var name = profile.displayName;
 
-                    console.log("Profile Name: " + name);
+                    console.log("Profile Name: " + profile.displayName);
+                    console.log("User ID: " + profile.userId);
 
-                    profileName = name;
+                    profileName = profile.displayName;
 
                 }).catch((err) => {
                     console.error('LIFF initialization failed ', err);
