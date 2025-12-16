@@ -151,15 +151,26 @@
 
                 if (data.status === 200)
                 {
-                    // var message = "สวัสดี คุณ " + profileName + "\nเลขอ้างอิง 1 : " + data.data.ref1 + "\nยอดเงิน : " + data.data.amount.amount + "\nชำระสำเร็จ";
                     console.log(data.data);
 
-                    await liff.sendMessages([
-                        {
-                            type: "text",
-                            text: data.result,
-                        }
-                    ]);
+                    const response = await fetch('https://localhost:7136/extractSlip/extractTextFile', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const data = await response.json();
+
+                    console.log(data.result);
+                    
+                    // await liff.sendMessages([
+                    //     {
+                    //         type: "text",
+                    //         text: data.result,
+                    //     }
+                    // ]);
                 }
 
                 // const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
