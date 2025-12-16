@@ -147,11 +147,11 @@
 
                 console.log(response);
 
-                const data = await response.json();
+                const resultData = await response.json();
 
-                console.log(data);
+                console.log(resultData);
 
-                if (data.status === 200)
+                if (resultData.status === 200)
                 {
                     //console.log(data.data);
 
@@ -160,7 +160,8 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(data)
+                        //body: JSON.stringify(resultData)
+                        body: resultData
                     });
 
                     const data = await response.json();
