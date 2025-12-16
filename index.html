@@ -160,8 +160,8 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        //body: JSON.stringify(resultData)
-                        body: resultData
+                        body: JSON.stringify(resultData)
+                        //body: resultData
                     });
 
                     const data = await response.json();
