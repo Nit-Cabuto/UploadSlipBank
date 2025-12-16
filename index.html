@@ -131,14 +131,17 @@
                 //         text: "Hi " + profileName,
                 //     }
                 // ]);
-                    
-                uploadBtn.disabled = false;
 
-                const response = await fetch('https://developer.easyslip.com/api/v1/verify', {
+                // const response = await fetch('https://developer.easyslip.com/api/v1/verify', {
+                //     method: 'POST',
+                //     headers: {
+                //         "Authorization": `Bearer 81cae111-e8de-4266-b21c-1aa364d0ecfb`
+                //     },
+                //     body: formData
+                // });
+
+                const response = await fetch('https://uat-webhook.ksp.kln.com/', {
                     method: 'POST',
-                    headers: {
-                        "Authorization": `Bearer 81cae111-e8de-4266-b21c-1aa364d0ecfb`
-                    },
                     body: formData
                 });
 
