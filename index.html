@@ -230,10 +230,11 @@
                     //         text: "ไฟล์ไม่ถูกต้อง กรุณาอัปโหลดใหม่อีกครั้ง",
                     //     }
                     // ]);
-            } finally 
-            {
-                    uploadBtn.disabled = false;
-            }
+            } 
+            // finally 
+            // {
+            //         uploadBtn.disabled = false;
+            // }
 
             // await liff.sendMessages([
             //             {
@@ -244,7 +245,7 @@
 
             setTimeout(() => {
                 liff.closeWindow();
-            }, 2000);
+            }, 1000);
         }
 
         main();
