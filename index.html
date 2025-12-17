@@ -165,12 +165,19 @@
                 {
                     var messageError = "ชื่อในสลิปผู้รับ : " + rec + "\nไม่ตรงกับ บัญชีของเรา";
 
+                    console.log(messageError);
+
                     await liff.sendMessages([
                         {
                             type: "text",
                             text: messageError,
                         }
                     ]);
+
+                    $.unblockUI();
+                    setTimeout(() => {
+                        liff.closeWindow();
+                    }, 1000);
 
                     return;
                 }
