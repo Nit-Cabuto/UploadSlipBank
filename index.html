@@ -161,9 +161,41 @@
                 var rec = dataName.receiver.account.name.th
                 console.log("receiver : " + rec);
 
-                if (!rec.includes("KERRY"))
+                if (rec.includes("KERRY"))
                 {
-                    var messageError = "ชื่อในสลิปผู้รับ : " + rec + "\nไม่ตรงกับ บัญชีของเรา";
+                    const dataJson = { data: resultData , profileName: profileName, userIdLine: userIdLine};
+
+                    console.log(dataJson);
+
+                    if (resultData.status === 200)
+                    {
+                        //console.log(data.data);
+
+                        const response = await fetch('https://uat-webhook.ksp.kln.com/extractSlip/extractTextFile', {
+                        //const response = await fetch('http://localhost:5270/extractSlip/extractTextFile', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(dataJson)
+                            //body: resultData
+                        });
+
+                        const data = await response.json();
+
+                        console.log(data.result);
+                        
+                        await liff.sendMessages([
+                            {
+                                type: "text",
+                                text: "สลิปคุณ : "+ profileName + "\nสถานะ : " + data.result,
+                            }
+                        ]);
+                    }
+                }
+                else
+                {
+                    var messageError = "ชื่อในสลิปผู้รับ : " + rec + "\nไม่ตรงกับ บัญชีบริษัท ของเรา";
 
                     console.log(messageError);
 
@@ -173,44 +205,40 @@
                             text: messageError,
                         }
                     ]);
-
-                    $.unblockUI();
-
-                    liff.closeWindow();
-
-                    return;
                 }
                 // --------------------------------------------
 
-                const dataJson = { data: resultData , profileName: profileName, userIdLine: userIdLine};
+                // const dataJson = { data: resultData , profileName: profileName, userIdLine: userIdLine};
 
-                console.log(dataJson);
+                // console.log(dataJson);
 
-                if (resultData.status === 200)
-                {
-                    //console.log(data.data);
+                // if (resultData.status === 200)
+                // {
+                //     //console.log(data.data);
 
-                    const response = await fetch('https://uat-webhook.ksp.kln.com/extractSlip/extractTextFile', {
-                    //const response = await fetch('http://localhost:5270/extractSlip/extractTextFile', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(dataJson)
-                        //body: resultData
-                    });
+                //     const response = await fetch('https://uat-webhook.ksp.kln.com/extractSlip/extractTextFile', {
+                //     //const response = await fetch('http://localhost:5270/extractSlip/extractTextFile', {
+                //         method: 'POST',
+                //         headers: {
+                //             'Content-Type': 'application/json'
+                //         },
+                //         body: JSON.stringify(dataJson)
+                //         //body: resultData
+                //     });
 
-                    const data = await response.json();
+                //     const data = await response.json();
 
-                    console.log(data.result);
+                //     console.log(data.result);
                     
-                    await liff.sendMessages([
-                        {
-                            type: "text",
-                            text: "สลิปคุณ : "+ profileName + "\nสถานะ : " + data.result,
-                        }
-                    ]);
-                }
+                //     await liff.sendMessages([
+                //         {
+                //             type: "text",
+                //             text: "สลิปคุณ : "+ profileName + "\nสถานะ : " + data.result,
+                //         }
+                //     ]);
+                // }
+
+                //--------------------------------------------
 
                 // const response = await fetch('http://localhost:5228/ExtractSlip/ExtractSlipQRCodeExternal', {
                 //     method: 'POST',
