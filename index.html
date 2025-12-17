@@ -154,6 +154,11 @@
 
                 const resultData = await response.json();
 
+                // --------------------------------------------
+                var dataName = resultData.data
+                console.log(dataName);  
+                // --------------------------------------------
+
                 const dataJson = { data: resultData , profileName: profileName, userIdLine: userIdLine};
 
                 console.log(dataJson);
@@ -231,6 +236,8 @@
                     statusDiv.className = 'error';
 
                     console.log('Error : ', error.message);
+
+                    $.unblockUI();
 
                     await liff.sendMessages([
                         {
