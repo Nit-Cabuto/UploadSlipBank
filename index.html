@@ -194,66 +194,7 @@
 
                         console.log(data.result);
 
-                        const responseData = await fetch('https://api.line.me/v2/bot/message/push', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'Authorization': `Bearer WCdLOOD1qlAkK4m5AjPCLR2c20UqYURZuki3HsxyVLesLVz0bNoBB4ndY/zu7sxA876VqvdJyC2V+Ykw4ib/Loo+rZgp8vz1v1Bn0NkDpGS2QXlZMmBQ2Nvz1sXCUjw/imsac/wXrHL9l1TpAi8cbQdB04t89/1O/w1cDnyilFU=`
-                            },
-                            body: JSON.stringify(
-                                {
-                                    "to": userIdLine,
-                                    "messages": [
-                                        {
-                                            "type": "flex",
-                                            "altText": "สลิปตรวจสอบแล้ว",
-                                            "contents": {
-                                                "type": "bubble",
-                                                "hero": {
-                                                    "type": "image",
-                                                    "url": "https://cdn-icons-png.flaticon.com/512/3225/3225196.png",
-                                                    "size": "md",
-                                                    "aspectRatio": "1:1",
-                                                    "aspectMode": "cover",
-                                                    "backgroundColor": "#FFFFFF"
-                                                },
-                                                "body": {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "contents": [
-                                                        {
-                                                            "type": "text",
-                                                            "text": "สลิปตรวจสอบแล้ว ✅",
-                                                            "weight": "bold",
-                                                            "size": "xl",
-                                                            "color": "#1B8F3A",
-                                                            "align": "center"
-                                                        },
-                                                        {
-                                                            "type": "separator",
-                                                            "margin": "md"
-                                                        },
-                                                        {
-                                                            "type": "text",
-                                                            "text": data.result,
-                                                            "wrap": true,
-                                                            "align": "center",
-                                                            "margin": "md"
-                                                        }
-                                                    ]
-                                                },
-                                                "styles": {
-                                                    "body": {
-                                                        "backgroundColor": "#F8FFF8"
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    ]
-                                }
-                            )
-                        });
+                        sendMessageAPI(userIdLine , data);
 
                         // await liff.sendMessages([
                         //     {
@@ -440,22 +381,70 @@
                 });
         }
 
-        async function sendMessageAPI() {
+        async function sendMessageAPI(userIdLine , data) {
 
-            await liff.sendMessages([
-                {
-                    type: "text",
-                    text: "waiting for approve ...",
-                },
+            const responseData = await fetch('https://api.line.me/v2/bot/message/push', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer WCdLOOD1qlAkK4m5AjPCLR2c20UqYURZuki3HsxyVLesLVz0bNoBB4ndY/zu7sxA876VqvdJyC2V+Ykw4ib/Loo+rZgp8vz1v1Bn0NkDpGS2QXlZMmBQ2Nvz1sXCUjw/imsac/wXrHL9l1TpAi8cbQdB04t89/1O/w1cDnyilFU=`
+                            },
+                            body: JSON.stringify(
+                                {
+                                    "to": userIdLine,
+                                    "messages": [
+                                        {
+                                            "type": "flex",
+                                            "altText": "สลิปตรวจสอบแล้ว",
+                                            "contents": {
+                                                "type": "bubble",
+                                                "hero": {
+                                                    "type": "image",
+                                                    "url": "https://cdn-icons-png.flaticon.com/512/3225/3225196.png",
+                                                    "size": "md",
+                                                    "aspectRatio": "1:1",
+                                                    "aspectMode": "cover",
+                                                    "backgroundColor": "#FFFFFF"
+                                                },
+                                                "body": {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "contents": [
+                                                        {
+                                                            "type": "text",
+                                                            "text": "สลิปตรวจสอบแล้ว ✅",
+                                                            "weight": "bold",
+                                                            "size": "xl",
+                                                            "color": "#1B8F3A",
+                                                            "align": "center"
+                                                        },
+                                                        {
+                                                            "type": "separator",
+                                                            "margin": "md"
+                                                        },
+                                                        {
+                                                            "type": "text",
+                                                            "text": data.result,
+                                                            "wrap": true,
+                                                            "align": "center",
+                                                            "margin": "md"
+                                                        }
+                                                    ]
+                                                },
+                                                "styles": {
+                                                    "body": {
+                                                        "backgroundColor": "#F8FFF8"
+                                                    }
+                                                }
+                                            }
+                                        }
 
-                console.log("send message")
-            ])
-                .then(() => {
-                    console.log("message sent");
-                })
-                .catch((err) => {
-                    console.log("error", err);
-                });
+                                    ]
+                                }
+                            )
+                        });
+
+                        console.log(responseData);
         }
 
     </script>
